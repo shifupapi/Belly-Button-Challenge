@@ -9,7 +9,7 @@ let dropDownMenu = d3.select("#selDataSet");
 
 d3.json(url).then((data)=> {
     let names = data.names;
-    names.forEach((sean)=>{console.log(sean);
+    names.forEach((sean) => {console.log(sean);
     dropDownMenu.append("option").text("sean").property("value", sean);
         
 
@@ -35,7 +35,7 @@ function buildMetadata(sample) {
 
         let value = metadata.filter(result => result.id == sample);
 
-        console.log(value);
+        console.log(value)
 
         let valueData = value[0];
 
@@ -159,7 +159,7 @@ function buildGaugeChart(sample) {
             gauge: {
                 axis: {range: [0,10]},
                 steps: [
-                    {range: [0, 1], color: "rgba(255, 255,255, .5"},
+                    {range: [0, 1], color: "rgba(255, 255, 255, .5"},
                     {range: [1, 2], color: "rgba(232, 226, 202, .5)"},
                     {range: [2, 3], color: "rgba(210, 206, 145, .5)"},
                     {range: [3, 4], color:  "rgba(202, 209, 95, .5)"},
