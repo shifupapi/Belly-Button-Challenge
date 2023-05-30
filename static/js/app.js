@@ -5,21 +5,13 @@ d3.json(url).then(function(data){console.log(data);
 });
 function init()  {
 
-let dropDownMenu = d3.select("#selDataSet");
+    let dropDownMenu = d3.select("#selDataSet");
 
-// // let names = data.names;
-// for (let i = 0; i < data.names.length; i++){
-//     let id = data.names[i];
-//     let option = document.createElement("option");
-//     option.value = id;
-//     option.textContent = id;
-//     dropDownMenu.append(option);
-// }
 
-d3.json(url).then((data)=> {
+    d3.json(url).then((data)=> {
     let names = data.names;
     names.forEach((sean) => {console.log(sean);
-    dropDownMenu.append("option").text("sean").property("value", sean);
+    dropDownMenu.append("option").text(sean).property("value", sean);
         
 
 });
