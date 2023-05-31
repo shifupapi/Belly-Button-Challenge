@@ -5,30 +5,40 @@ d3.json(url).then(function(data){console.log(data);
 });
 function init()  {
 
-    let dropDownMenu = d3.select("#selDataSet");
-
+    let selector = d3.select("#selDataSet");
 
     d3.json(url).then((data)=> {
-    let names = data.names;
-    names.forEach((sean) => {console.log(sean);
-    dropDownMenu.append("option").text(sean).property("value", sean);
-        
+
+    let sampleNames = data.names;
+    for (let i = 0; i < sampleNames.length; i++){
+        selector
+          .append("option")
+          .text(sampleNames[i])
+          .property("value", sampleNames[i]);
+      };
+    
+
+      let sample_one = sampleNames[0];
+      console.log("betty", sample_one);
+   
+
+   
+    buildBarChart(sample_one);
+    buildBubbleChart(sample_one);
+    buildGaugeChart(sample_one);
+    buildMetadata(sample_one);   
 
 });
 
+};
 
-let sample_one = names[0];
-console.log(sample_one);
-
-
-buildMetadata(sample_one);
-buildBarChart(sample_one);
-buildBubbleChart(sample_one);
-buildGaugeChart(sample_one);
-
-
-});
-}
+function optionChanged(newSample) {
+    
+    buildBarChart(newSample);
+    buildBubbleChart(newSample);
+    buildGaugeChart(newSample);
+    buildMetadata(newSample);
+  }
 
 function buildMetadata(sample) {
 
@@ -36,21 +46,21 @@ function buildMetadata(sample) {
 
         let metadata = data.metadata;
 
-        let value = metadata.filter(result => result.id == sample);
+        let myvalues = metadata.filter(result => result.id == sample);
+    
+        console.log("fred", myvalues[0].id);
 
-        console.log(value)
+        let valueData = myvalues[0];
 
-        let valueData = value[0];
+        let PANEL = d3.select("#sample-metadata")
+        PANEL.html("");
 
-        d3.select("#sample-metadata").html("");
-
-        Object.entries(valueData).forEach(([key,value]) => {
-
-            console.log(key,value);
-
-            d3.select("#sample-metadata").append("h5").text(`${key}: ${value}`);
+       
+        for (key in valueData){
+            console.log("bob", key, valueData[key]);
+            PANEL.append("h6").text(`${key}: ${valueData[key]}`);
+          };
     });
-});
 
 };
 
