@@ -5,7 +5,7 @@ d3.json(url).then(function(data){console.log(data);
 });
 function init()  {
 
-    let selector = d3.select("#selDataSet");
+    let selector = d3.select("#selDataset");
 
     d3.json(url).then((data)=> {
 
